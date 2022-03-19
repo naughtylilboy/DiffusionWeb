@@ -26,7 +26,7 @@
                 <configuration>
                     <webResources>
                         <resource>
-                            <directory></directory>
+                            <directory>/</directory>
                         </resource>
                     </webResources>
                 </configuration>
