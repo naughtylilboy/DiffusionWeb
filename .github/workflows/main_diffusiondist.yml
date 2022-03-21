@@ -28,7 +28,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: java-app
-          path: '${{ github.workspace }}/*.jar'
+          path: '${{ github.workspace }}/*.war'
 
   deploy:
     runs-on: windows-latest
@@ -50,4 +50,4 @@ jobs:
           app-name: 'DiffusionDist'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_216BE673D21843B2BB2D9FA5DC48FCDD }}
-          package: '*.jar'
+          package: '*.war'
