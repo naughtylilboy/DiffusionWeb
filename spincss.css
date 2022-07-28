@@ -1,0 +1,13 @@
+@charset "UTF-8";
+ #foo {
+            position: fixed;
+            left: 0;
+            top: 0;
+            _position: absolute;
+            width: 100%;
+            background: #000;
+            opacity: 0.5;
+            filter: alpha(opacity=50);
+            z-index: 999;
+            display: none;
+        }

@@ -3,13 +3,45 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
 <link rel="stylesheet" href="fold.css">
 <link rel="stylesheet" href="editable.css">
 <link rel="stylesheet" href="navi.css">
 <link rel="stylesheet" href="navi2.css">
+<link rel="stylesheet" href="spin.css">
+<link rel="stylesheet" href="spincss.css">
+ <style type="text/css">
+       
+        #foo1 {
+            position: fixed;
+            left: 0;
+            top: 0;
+            _position: absolute;
+            width: 100%;
+            background: #000;
+            opacity: 0.5;
+            filter: alpha(opacity=50);
+            z-index: 999;
+            display: none;
+        }
+#foo {
+  position: relative;
+  background: #FFF;
+  height: 20px;
+  width:20px;
+  display: inline-block;
+}
+
+   
+    </style>
+
 <title>Insert title here</title>
 <script src="jquery-3.6.0test.js"></script>  
 <script src="echarts.min.js"></script>
+<script src="spin.js"></script>
+<script src="spin.umd.js"></script>
 </head>
 <body>
 <h1a><br><h1>太阳能工艺模拟 扩散工艺模拟 热氧化工艺模拟 PECVD工艺模拟</h1><br></h1a><br>
@@ -37,23 +69,11 @@
 </ul1>
 
 
-<div style="margin-left:25%;padding:1px 16px;height:1000px;">
-  <h1>全高的固定侧导航栏</h1>
-  <h2>请尝试滚动此区域，并查看 sidenav 如何粘在页面上。</h2>
-  <p>请注意，此 div 元素的左外边距为 25％。这是因为侧导航栏被设置为 25％ 宽。如果删除这个外边距，则 sidenav 将叠加到该 div 上。</p>
-  <p>还要注意，我们已为 sidenav 设置 overflow：auto。如果 sidenav 太长时（例如，如果其中有超过 50 个链接），会添加滚动条。</p>
-  <p>Some text..</p>
-  <p>Some text..</p>
-  <p>Some text..</p>
-  <p>Some text..</p>
-  <p>Some text..</p>
-  <p>Some text..</p>
-  <p>Some text..</p>
-  </div>
+
   <div style="margin-left:25%" class="warn">输入有误，成绩请输入0~100以内的数字</div>
     <div style="margin-left:25%" class="container">
-        <p class="title">可编辑表格</p>
-        <div class="hint">提示：可点击具体成绩进行修改</div>
+        <p class="title">磷扩散工艺模拟</p>
+        <div class="hint">根据扩散工艺得出方阻和浓度分布</div>
 
     </div>
   
@@ -61,7 +81,7 @@
    <div style="margin-left:25%;padding:1px 16px;height:1500px" id="accordion_wrap">
       <dl class="accordion">
          <dt><a href="#"><span>炉管参数</span></a></dt>
-         <dd><p>一个周日的下午，当我阅读有关哥伦比亚号航天飞机事故中丧生的宇航员的传记时，我的脑海中又浮现出那个船工在演奏手风琴的情景。</p><p>    &ensp;&ensp;管&ensp;&ensp;&ensp;&ensp;长&ensp;：<input style="width:100px;height:17px;border:dotted" id="tubelength" value="200">&ensp;&ensp;厘米<td>     &ensp;&ensp;&ensp;&ensp;炉管直径&ensp;：<input id="tuberadius" style="width:100px;height:18px;border:dotted" value="30">&ensp;&ensp;厘米  &ensp;&ensp;&ensp;&ensp;石英舟长&ensp;：<input id="boatlength" style="width:100px;height:18px;border:dotted" value="150">&ensp;&ensp;厘米  <br>    &ensp;&ensp;线&ensp;圈&ensp;一&ensp;：<input id="circle1" style="width:100px;height:17px;border:dotted" value="30">&ensp;&ensp;厘米     &ensp;&ensp;&ensp;&ensp;线&ensp;圈&ensp;二&ensp;：<input id="circle2" style="width:100px;height:18px;border:dotted" value="30">&ensp;&ensp;厘米      &ensp;&ensp;&ensp;&ensp;线&ensp;圈&ensp;三&ensp;：<input id="circle3" style="width:100px;height:18px;border:dotted" value="30">&ensp;&ensp;厘米<br>&ensp;&ensp;线&ensp;圈&ensp;四&ensp;：<input id="circle4" style="width:100px;height:18px;border:dotted" value="30">&ensp;&ensp;厘米      &ensp;&ensp;&ensp;&ensp;线&ensp;圈&ensp;五&ensp;：<input id="circle5" style="width:100px;height:18px;border:dotted" value="30">&ensp;&ensp;厘米     &ensp;&ensp;&ensp;&ensp;线&ensp;圈&ensp;六&ensp;：<input id="circle6" style="width:100px;height:18px;border:dotted" value="30">&ensp;&ensp;厘米<br>&ensp;&ensp;硅片数量&ensp;：<input id="waferamount" style="width:100px;height:18px;border:dotted" value="800">&ensp;&ensp;片&ensp;&ensp;   &ensp;&ensp;&ensp;&ensp;硅片厚度&ensp;：<input id="waferthickness" style="width:100px;height:18px;border:dotted" value="0.2">&ensp;&ensp;毫米          &ensp;&ensp;&ensp;&ensp;硅片尺寸&ensp;：<input id="wafersize" style="width:100px;height:18px;border:dotted" value="156">&ensp;&ensp;毫米<br></p></dd>
+         <dd><p>    &ensp;&ensp;管&ensp;&ensp;&ensp;&ensp;长&ensp;：<input style="width:100px;height:17px;border:dotted" id="tubelength" value="200">&ensp;&ensp;厘米<td>     &ensp;&ensp;&ensp;&ensp;炉管直径&ensp;：<input id="tuberadius" style="width:100px;height:18px;border:dotted" value="30">&ensp;&ensp;厘米  &ensp;&ensp;&ensp;&ensp;石英舟长&ensp;：<input id="boatlength" style="width:100px;height:18px;border:dotted" value="150">&ensp;&ensp;厘米  <br>    &ensp;&ensp;线&ensp;圈&ensp;一&ensp;：<input id="circle1" style="width:100px;height:17px;border:dotted" value="30">&ensp;&ensp;厘米     &ensp;&ensp;&ensp;&ensp;线&ensp;圈&ensp;二&ensp;：<input id="circle2" style="width:100px;height:18px;border:dotted" value="30">&ensp;&ensp;厘米      &ensp;&ensp;&ensp;&ensp;线&ensp;圈&ensp;三&ensp;：<input id="circle3" style="width:100px;height:18px;border:dotted" value="30">&ensp;&ensp;厘米<br>&ensp;&ensp;线&ensp;圈&ensp;四&ensp;：<input id="circle4" style="width:100px;height:18px;border:dotted" value="30">&ensp;&ensp;厘米      &ensp;&ensp;&ensp;&ensp;线&ensp;圈&ensp;五&ensp;：<input id="circle5" style="width:100px;height:18px;border:dotted" value="30">&ensp;&ensp;厘米     &ensp;&ensp;&ensp;&ensp;线&ensp;圈&ensp;六&ensp;：<input id="circle6" style="width:100px;height:18px;border:dotted" value="30">&ensp;&ensp;厘米<br>&ensp;&ensp;硅片数量&ensp;：<input id="waferamount" style="width:100px;height:18px;border:dotted" value="800">&ensp;&ensp;片&ensp;&ensp;   &ensp;&ensp;&ensp;&ensp;硅片厚度&ensp;：<input id="waferthickness" style="width:100px;height:18px;border:dotted" value="0.2">&ensp;&ensp;毫米          &ensp;&ensp;&ensp;&ensp;硅片尺寸&ensp;：<input id="wafersize" style="width:100px;height:18px;border:dotted" value="156">&ensp;&ensp;毫米<br></p></dd>
        </dl>
        
         <dl class="accordion">
@@ -69,25 +89,19 @@
          <dd id="process"><table class="edtable">  </table></dd><br>
 
        </dl>
-       &emsp;&emsp;<button id="run">运行工艺</button><p class="p1"><br></p>
+       &emsp;&emsp;<button id="run">运行工艺</button>&emsp;&emsp;&emsp;&emsp;<div id="foo"  style="z-index:0;"></div><p class="p1"><br></p>
         <dl class="accordion">
          <dt><a href="#"><span>运行结果</span></a></dt>
-         <dd id="sheetR"><p>一个周日的下午，当我阅读有关哥伦比亚号航天飞机事故中丧生的宇航员的传记时，我的脑海中又浮现出那个船工在演奏手风琴的情景。<table  class="edtable" id="editableR" style="width:600px">  </table></p></dd>
+         <dd id="sheetR"><table  class="edtable" id="editableR" style="width:600px">  </table><br>&emsp;<button id="copyR">复制数据</button><br><br></dd>
        </dl>
        
         <dl class="accordion last_style">
          <dt><a href="#"><span>浓度分布</span></a></dt>
-         <dd id="profile">&emsp;&emsp;<span id="charts" style="width: 600px; height: 400px;">一个周日的下午，当我阅读有关哥伦比亚号航天飞机事故中丧生的宇航员的传记时，我的脑海中又浮现出那个船工在演奏手风琴的情景。           </span></dd>
+         <dd id="profile">&emsp;&emsp;<span id="charts" style="width: 600px; height: 400px; z-index:1;"> </span>&emsp;<button id="copyP">复制数据</button></dd>
        </dl>
-    </div>
+    </div><br><br><br>
   
-<br>
-
-<h2>把 JavaScript 对象转换为 JSON 字符串，然后发送到服务器。{ "name":"Bill Gates",  "age":62, "city":"Seattle" };</h2>
-<p id="demo">ppp</p>
-<p id="id01">Hello World!</p>
-<p id="id02">Hello China!</p>
-<p id="id03">Hello Shanghai!</p>
+<br><br><br>
 
 
 
@@ -205,11 +219,82 @@ $.getJSON(url).done(function(json){
     
   //$("#demo").text("第三段中的文本是：" + json.name);
 });*/
+
 document.getElementById("run").onclick = runbutton;
+document.getElementById("copyR").onclick = copyRbutton;
+document.getElementById("copyP").onclick = copyPbutton;
+
+
+//import {Spinner} from 'spin.js';
+/*var opts = {
+        lines: 9, // The number of lines to draw
+        length: 10, // The length of each line
+        width: 10, // The line thickness
+        radius: 15, // The radius of the inner circle
+        corners: 1, // Corner roundness (0..1)
+        rotate: 0, // The rotation offset
+        color: '#fff', // #rgb or #rrggbb
+        speed: 1, // Rounds per second
+        trail: 60, // Afterglow percentage
+        shadow: false, // Whether to render a shadow
+        hwaccel: false, // Whether to use hardware acceleration
+        className: 'spin', // The CSS class to assign to the spinner
+        zIndex: 2e9, // The z-index (defaults to 2000000000)
+        top: '50%', // Top position relative to parent in px
+        left: '50%' // Left position relative to parent in px
+    };*/
+    /*var opts = {
+    		  lines: 13, // The number of lines to draw
+    		  length: 38, // The length of each line
+    		  width: 17, // The line thickness
+    		  radius: 45, // The radius of the inner circle
+    		  scale: 1, // Scales overall size of the spinner
+    		  corners: 1, // Corner roundness (0..1)
+    		  speed: 1, // Rounds per second
+    		  rotate: 0, // The rotation offset
+    		  animation: 'spinner-line-fade-quick', // The CSS animation name for the lines
+    		  direction: 1, // 1: clockwise, -1: counterclockwise
+    		  color: '#ffffff', // CSS color or array of colors
+    		  fadeColor: 'transparent', // CSS color or array of colors
+    		  top: '50%', // Top position relative to parent
+    		  left: '50%', // Left position relative to parent
+    		  shadow: '0 0 1px transparent', // Box-shadow for the lines
+    		  zIndex: 2000000000, // The z-index (defaults to 2e9)
+    		  className: 'spinner', // The CSS class to assign to the spinner
+    		  position: 'absolute', // Element positioning
+    		};*/
+    var spinner = new Spinner();
+    
+    //显示与隐藏加载动画
+    function showLoading(result) {
+//1    	alert("showloading");
+        //var spinContainer = document.getElementById("foo");
+        if (result) {
+            //var target = $(spinContainer).get(0);
+            //alert(spinner);alert(target);alert(spinContainer);
+            //spinner.spin(target);
+            //spinContainer.style.height = document.documentElement.clientHeight + "px";
+            //$(spinContainer).hide();
+        	var target = document.getElementById('foo');
+        	spinner.spin(target);
+        	//var spinner = new Spinner(opts).spin(target);
+        	//spinContainer.style.height = document.documentElement.clientHeight + "px";
+            //$(spinContainer).show();
+        } else {
+            spinner.stop();
+            //$(spinContainer).hide();
+        }
+    }
 function runbutton(){
+	//navigator.clipboard.writeText('Yo');
+//1	alert("loading");
+	var operateColumns = { ediColumns: [ 2,3, 4,5,6,7,8,9,10,11,12], ediRule: [0, 50000], ediSpecialRule: { 13: [0, 10],4:[0,1500],5:[0,1500],6:[0,1500],7:[0,1500],8:[0,1500],9:[0,1500] }, isTotal: false, totalEach: [2, 3, 4], isDelete: true };
+	//establishList(operateColumns);	
+//1	alert("loading");
+    showLoading(true);
 	var iscalcserver="1";var iscustomer="0";var isinit="0";
 	var isresult="1";var issubmit="2"; var isreturn="3";
-	alert("run1!");
+	//alert("run1!");
     //establishListR(operateColumnsR);
     /*var dataList = [
         { step: 1, name: '小王', time: 80, zone1: 90, zone2: 99, zone3: 90, zone4: 99, zone5: 90, zone6: 99, bigN2: 200, smallN2: 200, O2: 200, pressure: 200 },
@@ -225,26 +310,29 @@ function runbutton(){
         StrProcess=StrProcess+dataList[i].step+" "+dataList[i].name+" "+dataList[i].time+" "+dataList[i].zone1+" "+dataList[i].zone2+" "+dataList[i].zone3+" "+dataList[i].zone4+" "+dataList[i].zone5+" "+dataList[i].zone6+" "+dataList[i].bigN2+" "+dataList[i].smallN2+" "+dataList[i].O2+" "+dataList[i].pressure+" ";
     }
     
-    alert("run2!");
+    //alert("run2!");
     //var sjson=JSON.stringify(StrTube+StrProcess);
     
     var sjson= '"StrTube":"'+StrTube+'",  "StrProcess":"'+StrProcess+'"';
-    alert(StrTube);
+    //var sjson= '"StrTube":"30",  "StrProcess":"60"';
+//1    alert(StrTube);
     //alert("ttt");
-    alert(sjson);
+//1    alert(sjson);
     //alert("ttt1");
    // var myObj = '"name":"Bill Gates",  "age":62, "city":"Seattle"';
     //var myJSON = JSON.stringify(myObj);
     //document.write(sjson);
 
-    var url="https://diffusiondist.azurewebsites.net/ServletTest?host="+iscustomer+"&processinfo=%7B" +sjson+"%7D";
-    
-    alert("test");
+    var url="https://testservlet.azurewebsites.net/hello?jsoncallback=?&host="+iscustomer+"&processinfo=%7B" +sjson+"%7D";
+//1    var url="http://localhost:8080/TEST/ServletTest?host="+iscustomer+"&processinfo=%7B" +sjson+"%7D";
+       
+    //    window.location=url;
+    //alert("test");
     $.getJSON(url).done(function(json){
-    	alert("fn");
-    	alert(json.StrProfile);alert("aaa");alert(sheetR[1]);alert(sheetR[9]);
+    	alert("fn");spinner.stop();
+    	//alert(json.StrProfile);alert("aaa");//alert(sheetR[1]);alert(sheetR[9]);
     	//document.write(json.StrProcess);
-        document.getElementById("demo").innerHTML=json.salesVolume;
+        //document.getElementById("demo").innerHTML=json.salesVolume;
         var months = ["0","0.01","0.02","0.03","0.04","0.05","0.06","0.07","0.08","0.09","0.10","0.11","0.12","0.13","0.14","0.15","0.16","0.17","0.18","0.19","0.20","0.21","0.22","0.23","0.24","0.25","0.26","0.27","0.28","0.29","0.30","0.31","0.32","0.33","0.34","0.35","0.36","0.37","0.38","0.39","0.40","0.41","0.42","0.43","0.44","0.45","0.46","0.47","0.48","0.49","0.50","0.51","0.52","0.53","0.54","0.55","0.56","0.57","0.58","0.59","0.60","0.61","0.62","0.63","0.64","0.65","0.66","0.67","0.68","0.69","0.70","0.71","0.72","0.73","0.74","0.75","0.76","0.77","0.78","0.79","0.80","0.81","0.82","0.83","0.84","0.85","0.86","0.87","0.88","0.89","0.90","0.91","0.92","0.93","0.94","0.95","0.96","0.97","0.98","0.99","0.100"];//,"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93"];
 		       
 
@@ -254,7 +342,8 @@ function runbutton(){
     	//months = json.months;//月份
         profile=json.StrProfile;
     	sheetR=json.Strsheet;
-    	//alert(sheetR);
+    	alert(sheetR);
+    	//alert("bbb");
     	var option = {
     			title : {
     				text : 'ECharts 入门示例'
@@ -316,7 +405,7 @@ function runbutton(){
               var v = parseFloat(value);
               v = v * Math.pow(10,numN2);
               return v.toString() + "e-" + numN2;
-          }else if(num1>4)
+          }else if(num1>5)
           {
               if(res[0]=="-")
                   numN1 = num1 - 2;
@@ -326,7 +415,7 @@ function runbutton(){
               v = v / Math.pow(10,numN1);
               if(num2 > 4)
                   v = v.toFixed(4);
-              return v.toString() + "e" + numN1;
+              return v.toString() + "e+" + numN1;
           }else
               return parseFloat(value);
       }
@@ -423,12 +512,12 @@ function runbutton(){
     		myChart.setOption(option);
 
     	dataListR = [
-    	    { No: 1, location: '炉口', center: sheetR[1], leftup: sheetR[0], leftdown: sheetR[0], rightup: sheetR[0], rightdown: sheetR[0], unisingle: Math.abs(sheetR[1]-sheetR[0])/(sheetR[1]+sheetR[0]), uniwhole: 99, },
-    	    { No: 2, location: '口中', center: sheetR[3], leftup: sheetR[2], leftdown: sheetR[2], rightup: sheetR[2], rightdown: sheetR[2], unisingle: Math.abs(sheetR[3]-sheetR[2])/(sheetR[3]+sheetR[2]), uniwhole: 99, },
-    	    { No: 3, location: '炉中', center: sheetR[5], leftup: sheetR[4], leftdown: sheetR[4], rightup: sheetR[4], rightdown: sheetR[4], unisingle: Math.abs(sheetR[5]-sheetR[4])/(sheetR[5]+sheetR[4]), uniwhole: 99, },
-    	    { No: 4, location: '尾中', center: sheetR[7], leftup: sheetR[6], leftdown: sheetR[6], rightup: sheetR[6], rightdown: sheetR[6], unisingle: Math.abs(sheetR[7]-sheetR[6])/(sheetR[7]+sheetR[6]), uniwhole: 99, },
-    	    { No: 5, location: '炉尾', center: sheetR[9], leftup: sheetR[8], leftdown: sheetR[8], rightup: sheetR[8], rightdown: sheetR[8], unisingle: Math.abs(sheetR[9]-sheetR[8])/(sheetR[9]+sheetR[8]), uniwhole: 99, },
-    	]
+    	    { No: 1, location: '炉口', center: sheetR[0], leftup: sheetR[1], leftdown: sheetR[1], rightup: sheetR[1], rightdown: sheetR[1], unisingle: Math.round(Math.abs(sheetR[1]-sheetR[0])/(sheetR[1]+sheetR[0])*10000)/100+'%', uniwhole: 99, },
+    	    { No: 2, location: '口中', center: sheetR[2], leftup: sheetR[3], leftdown: sheetR[3], rightup: sheetR[3], rightdown: sheetR[3], unisingle: Math.round(Math.abs(sheetR[3]-sheetR[2])/(sheetR[3]+sheetR[2])*10000)/100+'%', uniwhole: 99, },
+    	    { No: 3, location: '炉中', center: sheetR[4], leftup: sheetR[5], leftdown: sheetR[5], rightup: sheetR[5], rightdown: sheetR[5], unisingle: Math.round(Math.abs(sheetR[5]-sheetR[4])/(sheetR[5]+sheetR[4])*10000)/100+'%', uniwhole: 99, },
+    	    { No: 4, location: '尾中', center: sheetR[6], leftup: sheetR[7], leftdown: sheetR[7], rightup: sheetR[7], rightdown: sheetR[7], unisingle: Math.round(Math.abs(sheetR[7]-sheetR[6])/(sheetR[7]+sheetR[6])*10000)/100+'%', uniwhole: 99, },
+    	    { No: 5, location: '炉尾', center: sheetR[8], leftup: sheetR[9], leftdown: sheetR[9], rightup: sheetR[9], rightdown: sheetR[9], unisingle: Math.round(Math.abs(sheetR[9]-sheetR[8])/(sheetR[9]+sheetR[8])*10000)/100+'%', uniwhole: 99, },    	]
+
     	/*dataListR = [
     	    { No: 1, location: '小王', center: 80, leftup: 90, leftdown: 99, rightup: 90, rightdown: 99, unisingle: 90, uniwhole: 99, },
     	    { No: 2, location: '小明', center: 79, leftup: 88, leftdown: 75, rightup: 90, rightdown: 99, unisingle: 90, uniwhole: 99, },
@@ -438,7 +527,8 @@ function runbutton(){
     	var operateColumnsR = { ediColumns: [1, 2, 3, 4,5], ediRule: [0, 100], ediSpecialRule: { 5: [0, 250] }, isTotal: false, totalEach: [2, 3, 4], isDelete: false };
     	establishListR(operateColumnsR);
     	
-    	
+        $('#copyR').show();
+        $('#copyP').show();
     	
     });
     
@@ -454,7 +544,9 @@ function runbutton(){
         $('#profile').slideDown('fast');
     }
     
-    alert("end");
+//1    alert("end");
+    
+    //showLoading(false);
     //window.location="http://localhost:8080/TEST/ServletTest?x=" +myJSON+"";
 }
 /*var dataListR = [
@@ -463,11 +555,38 @@ function runbutton(){
     { No: 3, location: '小超', center: 50, leftup: 67, leftdown: 56, rightup: 90, rightdown: 99, unisingle: 90, uniwhole: 99, },
     { No: 4, location: '小李', center: 60, leftup: 88, leftdown: 66, rightup: 90, rightdown: 99, unisingle: 90, uniwhole: 99, },
 ]*/
-alert("rtest");
+//alert("rtest");
 var sc=readFile("D:/C++程序/DiffusionWeb/DiffusionWeb/result.txt");
-alert(sc);
+//alert(sc);
 
-
+function copyRbutton(){
+	var sheetRMtr="";var sheetRarr=new Array();
+	//sheetR="10,20,30,40,50,60,70,80,90,100";
+	//alert(sheetR);alert(sheetR[1]+sheetR[2]);
+	//var sheetRN=sheetR;alert(sheetRN);
+	//sheetRarr=sheetRN.split(',');
+	for (let i in sheetR){
+		if(i>0){
+    	if(i%2!=0)sheetRMtr=sheetRMtr+sheetR[i-1]+"\t"+sheetR[i]+"\t"+sheetR[i]+"\t"+sheetR[i]+"\t"+sheetR[i]+"\n";
+    	//else sheetRMtr=sheetRMtr+sheetR[i-1]+"\n";
+		
+		}
+	}
+	//alert(sheetRN);alert(sheetRarr);
+	//sheetRMtr=sheetRMtr+sheetR[0]+'\t'+sheetR[1]+'\t'+sheetR[1]+'\t'+sheetR[1]+'\t'+sheetR[1]+'\n'+sheetR[5]+'\t'+sheetR[6]+'\t'+sheetR[7]+'\t'+sheetR[8]+'\t'+sheetR[9]+'\n'+sheetR[10]+'\t'+sheetR[11]+'\t'+sheetR[12]+'\t'+sheetRarr[13]+'\t'+sheetRarr[14]+'\n'+sheetRarr[15]+'\t'+sheetRarr[16]+'\t'+sheetRarr[17]+'\t'+sheetRarr[18]+'\t'+sheetRarr[19]+'\n'+sheetRarr[20]+'\t'+sheetRarr[21]+'\t'+sheetRarr[22]+'\t'+sheetRarr[23]+'\t'+sheetRarr[24]+'\n';
+	//alert(sheetRMtr);
+	navigator.clipboard.writeText(sheetRMtr);
+	//alert(sheetRMtr);
+}
+function copyPbutton(){
+	var profileStr="";
+	for (let i in profile){
+		if(i==0)profileStr=profileStr+profile[i];
+		else profileStr=profileStr+"\t"+profile[i];
+	}
+	navigator.clipboard.writeText(profileStr);
+	alert("def");
+}
 </script>
 
 <script type="text/javascript">
@@ -524,10 +643,10 @@ var dataTitleR=['片 数', '位 置', '中 心', '左 上', '左 下', '右 上'
     { id: 4, name: '小李', chineseGrade: 60, mathGrade: 88, englishGrade: 66, moralityGrade: 240 },
 ]*/
 var dataList = [
-    { step: 1, name: '小王', time: 600, zone1: 823, zone2: 823, zone3: 823, zone4: 823, zone5: 823, zone6: 823, bigN2: 1000, smallN2: 100, O2: 0.0001, pressure: 0.1 },
-    { step: 2, name: '小明', time: 600, zone1: 833, zone2: 833, zone3: 833, zone4: 833, zone5: 833, zone6: 833, bigN2: 1000, smallN2: 100, O2: 1000, pressure: 0.1 },
-    { step: 3, name: '小超', time: 600, zone1: 843, zone2: 843, zone3: 843, zone4: 843, zone5: 843, zone6: 843, bigN2: 1000, smallN2: 100, O2: 1000, pressure: 0.1 },
-    { step: 4, name: '小李', time: 600, zone1: 853, zone2: 853, zone3: 853, zone4: 853, zone5: 853, zone6: 853, bigN2: 1000, smallN2: 100, O2: 1000, pressure: 0.1 },
+    { step: 1, name: '小王', time: 600, zone1: 823, zone2: 823, zone3: 823, zone4: 823, zone5: 823, zone6: 823, bigN2: 1000, smallN2: 1000, O2: 1000, pressure: 0.1 },
+    { step: 2, name: '小明', time: 600, zone1: 833, zone2: 833, zone3: 833, zone4: 833, zone5: 833, zone6: 833, bigN2: 1000, smallN2: 1000, O2: 1000, pressure: 0.1 },
+    { step: 3, name: '小超', time: 600, zone1: 843, zone2: 843, zone3: 843, zone4: 843, zone5: 843, zone6: 843, bigN2: 1000, smallN2: 1000, O2: 1000, pressure: 0.1 },
+    { step: 4, name: '小李', time: 600, zone1: 853, zone2: 853, zone3: 853, zone4: 853, zone5: 853, zone6: 853, bigN2: 1000, smallN2: 1000, O2: 1000, pressure: 0.1 },
 ]
 
 /*var dataListR = [
@@ -547,10 +666,12 @@ totalEach：[col1,col2,col3]需要计算总分的列数
 isDelete：Boolean 表示是否需要删除功能
 */
 //var operateColumns = { ediColumns: [2, 3, 4], ediRule: [0, 100], ediSpecialRule: { 5: [0, 250] }, isTotal: true, totalEach: [2, 3, 4], isDelete: true };
-var operateColumns = { ediColumns: [1, 2, 3, 4,5,6,7,8,9,10,11,12], ediRule: [0, 100], ediSpecialRule: { 5: [0, 250] }, isTotal: false, totalEach: [2, 3, 4], isDelete: true };
+var operateColumns = { ediColumns: [1, 2,3, 4,5,6,7,8,9,10,11,12], ediRule: [0, 50000], ediSpecialRule: {12: [0, 10],3:[0,2000],4:[0,2000],5:[0,2000],6:[0,2000],7:[0,2000],8:[0,2000] }, isTotal: false, totalEach: [2, 3, 4], isDelete: true };
+//var operateColumns = { ediColumns: [1, 2,3, 4,5,6,7,8,9,10,11,12], ediRule: [0, 50000], ediSpecialRule: {12: [0, 10],3:[0,1500],4:[0,1500],5:[0,1500],6:[0,1500],7:[0,1500],8:[0,1500] }, isTotal: false, totalEach: [2, 3, 4], isDelete: true };
 var operateColumnsR = { ediColumns: [1, 2, 3, 4,5,6,7,8,9], ediRule: [0, 100], ediSpecialRule: { 5: [0, 250] }, isTotal: false, totalEach: [2, 3, 4], isDelete: false };
 //生成列表事件
 function establishList(operateColumns) {
+
     //在删除一行数据后如不清空则在调用上一次的数据就还在
     document.getElementsByClassName("edtable")[0].innerHTML = '';
     //表头模板拼接和创建
@@ -572,7 +693,10 @@ function establishList(operateColumns) {
 
     //表内容模板生成
     //遍历列表数据
-    for (one of dataList) {
+    
+
+    
+    for (let one of dataList) {
         //获取所有key值
         let dataItem = Object.keys(one);
         //拼接的开头
@@ -596,6 +720,7 @@ function establishList(operateColumns) {
         document.getElementsByClassName('edtable')[0].insertAdjacentHTML('beforeEnd', listTempalte);
     }
     totalScore(operateColumns);
+
 }
 
 //生成列表事件
@@ -603,46 +728,47 @@ function establishListR(operateColumns) {
     //在删除一行数据后如不清空则在调用上一次的数据就还在
     document.getElementsByClassName("edtable")[1].innerHTML = '';
     //表头模板拼接和创建
-    var titleTempalte = `<tr class="list-title">`
+    var titleTempalteR = `<tr class="list-title">`
     for (let i in dataTitleR) {
-        titleTempalte += `<th>${dataTitleR[i]}</th>`
+        titleTempalteR += `<th>${dataTitleR[i]}</th>`
     }
     //判断是否有总和功能，增添表头总和字样
     if (operateColumnsR.isTotal) {
-        titleTempalte += `<th>总 和</th>`
+        titleTempalteR += `<th>总 和</th>`
     }
 
     //判断是否有删除功能，增添表头删除字样
     if (operateColumnsR.isDelete) {
-        titleTempalte += `<th>删 除</th>`
+        titleTempalteR += `<th>删 除</th>`
     }
-    titleTempalte += `</tr>`
-    document.getElementsByClassName("edtable")[1].insertAdjacentHTML('afterBegin', titleTempalte);
+    titleTempalteR += `</tr>`
+    document.getElementsByClassName("edtable")[1].insertAdjacentHTML('afterBegin', titleTempalteR);
 
     //表内容模板生成
     //遍历列表数据
-    for (one of dataListR) {
+    for (oneR of dataListR) {
         //获取所有key值
-        let dataItem = Object.keys(one);
+        let dataItemR = Object.keys(oneR);
         //拼接的开头
-        var listTempalte = `<tr class="list-items">`
+        //var listTempalteR = `<tr class="list-items">`
+        var listTempalteR = `<tr>`;
         //表体模板拼接
         //遍历key值
-        for (let key of dataItem) {
-            listTempalte += `<td>${one[key]}</td>`
+        for (let keyR of dataItemR) {
+            listTempalteR += `<td>${oneR[keyR]}</td>`
         }
 
         //判断是否需要增加总分列
         if (operateColumnsR.isTotal) {
-            listTempalte += `<td class="total"></td>`
+            listTempalteR += `<td class="total"></td>`
         }
 
         //判断是否有删除功能
         if (operateColumnsR.isDelete) {
-            listTempalte += `<td><button>×</button> <button>插入</button></td>`
+            listTempalteR += `<td><button>×</button> <button>插入</button></td>`
         }
-        listTempalte += `</tr>`
-        document.getElementsByClassName('edtable')[1].insertAdjacentHTML('beforeEnd', listTempalte);
+        listTempalteR += `</tr>`
+        document.getElementsByClassName('edtable')[1].insertAdjacentHTML('beforeEnd', listTempalteR);
     }
     //totalScore(operateColumns);
 }
@@ -715,7 +841,7 @@ function ediGrade(event) {
             //给对应的验证规则修改对应的提示文字
             let warninfo = '输入有误，请输入' + min + '~' + max + '以内的数字';
             document.getElementsByClassName('warn')[0].innerHTML = warninfo;
-            if (isEstimate(input.value, min, max)) {
+            if (isEstimate(input.value, min, max)||event.target.cellIndex==1) {
                 //获取更改数据的id号
                 let ediId = event.target.parentNode.children[0].innerHTML;
                 //获取更改数据在td一行中的第几列（从0开始）
@@ -757,8 +883,20 @@ function deleteRow(event) {
         if (dataList[i].step == deletId) {
             //对数据列表进行删除
             dataList.splice(i, 1);
+            dataList[i].step=deletId;
         }
+
     }
+    for (let i=deletId;i<dataList.length;i++) {
+    	//if(i==deletId)
+    	dataList[i].step--;
+    }
+    
+
+    
+//    for (let i in dataList) {
+//    	dataList[i].step=i+1;
+//    }
     establishList(operateColumns);
 }
 
@@ -771,9 +909,36 @@ function insertRow(event) {
         //找到删除行id值对应的那一条数据
         if (dataList[i].step == deletId) {
             //对数据列表进行删除
-            dataList.splice(i, 0,dataList[i]);break;
+            var dataAdd= { step: 1, name: '小王', time: 600, zone1: 823, zone2: 823, zone3: 823, zone4: 823, zone5: 823, zone6: 823, bigN2: 1000, smallN2: 1000, O2: 1000, pressure: 0.1 };
+            //var dataAdd=dataList[i];
+            dataList.splice(i, 0,dataAdd);
+            dataList[i].step=deletId;
+            alert(dataList[i].step);alert(dataList.Length);
+            break;
         }
+        for (let i=deletId;i<=dataList.Length;i++) {
+        //var a=dataList[i].step;var b=deletId;
+        //if ((dataList[i].step/1.0-deletId/1.0)>0) {
+        	//a++;
+            dataList[i].step++;
+//1            alert(dataList[i].step);
+        }
+ //       if (dataList[i].step > deletId){
+ //       	dataList[i].step+=1;
+ //       }
+ 
+
     }
+ 
+    var j=1;
+    for (let i=deletId;i<dataList.length;i++) {
+    	//if(i==deletId)
+    	dataList[i].step++;
+    }
+    //dataList[deletId].step--;
+    
+    
+
     //document.write(dataList[0]);document.write(dataList[1]);document.write(dataList[2]);document.write(dataList[3]);document.write(dataList[4]);document.write(dataList[5]);
     establishList(operateColumns);
 }
@@ -796,11 +961,12 @@ establishList(operateColumns);
         $(this).addClass('active');
         $('#process').slideDown('fast');
     }
-
+    $('#copyR').hide();
+    $('#copyP').hide();
 //<script type="text/javascript" language="javascript"> 
 //读文件 
 function readFile(filename){ 
-	alert("begin to read.");document.write("readtest");
+	//alert("begin to read.");//document.write("readtest");
 	var fso = new ActiveXObject("Scripting.FileSystemObject"); 
 	if(fso==null)alert("fso");
 	var f = fso.OpenTextFile(filename,1); 
@@ -809,19 +975,23 @@ function readFile(filename){
 	while (!f.AtEndOfStream) 
 		s += f.ReadLine()+"/n"; 
 	f.Close(); 
-	alert(s);
+	//alert(s);
 	return s; 
 } 
 
 //写文件 
 function writeFile(filename,filecontent){ 
-  var fso, f, s ; alert("write..");
+  var fso, f, s ; //alert("write..");
   fso = new ActiveXObject("Scripting.FileSystemObject");    
   f = fso.OpenTextFile(filename,8,true); 
   f.WriteLine(filecontent);   
   f.Close(); 
-	alert('write ok'); 
-	alert("test");
+	//alert('write ok'); 
+	//alert("test");
+	
+
+	
+	
 } 
 /*
 <html> 
