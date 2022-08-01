@@ -37,7 +37,7 @@
    
     </style>
 
-<title>Insert title here</title>
+<title>磷扩散工艺模拟</title>
 <script src="jquery-3.6.0test.js"></script>  
 <script src="echarts.min.js"></script>
 <script src="spin.js"></script>
@@ -275,7 +275,7 @@ function runbutton(){
 //    window.location=url;
 //1    alert("test");
     $.getJSON(url).done(function(json){
-    	alert("fn");spinner.stop();
+    	alert("计算已完成，请查看结果");spinner.stop();
 //    	alert(json.Strsheet);//alert(json.StrProfile);alert("aaa");
     	//document.write(json.StrProcess);
         //document.getElementById("demo").innerHTML=json.salesVolume;
@@ -292,13 +292,13 @@ function runbutton(){
  //1   	alert(json.Strsheet);
     	var option = {
     			title : {
-    				text : 'ECharts 入门示例'
+    				text : '磷扩散浓度分布'
     			},
     			tooltip : {},
     			//grid:{left:'20%',right:'2%',bottom:'10%',containlabel:true },
     			legend : {
     				//data : [ '销量' ],
-    				data : [ '营业额' ]
+    				data : [ 'Net Doping' ]
     			},
     			xAxis : {
     				data : months,
@@ -427,7 +427,7 @@ function runbutton(){
     				type : 'bar',
     				data : profile
     			}, */{
-    				name : '营业额',
+    				name : 'Net Doping',
     				type : 'line',
     				data : profile
     			} ],
@@ -585,13 +585,16 @@ var dataTitleR=['片 数', '位 置', '中 心', '左 上', '左 下', '右 上'
     { id: 3, name: '小超', chineseGrade: 50, mathGrade: 67, englishGrade: 56, moralityGrade: 230 },
     { id: 4, name: '小李', chineseGrade: 60, mathGrade: 88, englishGrade: 66, moralityGrade: 240 },
 ]*/
-var dataList = [
+var dataList1 = [
     { step: 1, name: '小王', time: 600, zone1: 823, zone2: 823, zone3: 823, zone4: 823, zone5: 823, zone6: 823, bigN2: 1000, smallN2: 100, O2: 0.0001, pressure: 0.1 },
     { step: 2, name: '小明', time: 600, zone1: 833, zone2: 833, zone3: 833, zone4: 833, zone5: 833, zone6: 833, bigN2: 1000, smallN2: 100, O2: 1000, pressure: 0.1 },
     { step: 3, name: '小超', time: 600, zone1: 843, zone2: 843, zone3: 843, zone4: 843, zone5: 843, zone6: 843, bigN2: 1000, smallN2: 100, O2: 1000, pressure: 0.1 },
     { step: 4, name: '小李', time: 600, zone1: 853, zone2: 853, zone3: 853, zone4: 853, zone5: 853, zone6: 853, bigN2: 1000, smallN2: 100, O2: 1000, pressure: 0.1 },
 ]
-
+var dataList = [
+    { step: 1, name: '小王', time: 600, zone1: 823, zone2: 823, zone3: 823, zone4: 823, zone5: 823, zone6: 823, bigN2: 1000, smallN2: 150, O2: 1000, pressure: 0.1 },
+    { step: 2, name: '小明', time: 600, zone1: 833, zone2: 833, zone3: 833, zone4: 833, zone5: 833, zone6: 833, bigN2: 1000, smallN2: 0, O2: 1000, pressure: 0.1 },
+ ]
 /*var dataListR = [
     { No: 1, location: '小王', center: 80, leftup: 90, leftdown: 99, rightup: 90, rightdown: 99, unisingle: 90, uniwhole: 99, },
     { No: 2, location: '小明', center: 79, leftup: 88, leftdown: 75, rightup: 90, rightdown: 99, unisingle: 90, uniwhole: 99, },
@@ -820,7 +823,12 @@ function deleteRow(event) {
         if (dataList[i].step == deletId) {
             //对数据列表进行删除
             dataList.splice(i, 1);
+            dataList[i].step=deletId;
         }
+    }
+    for (let i=deletId;i<dataList.length;i++) {
+    	//if(i==deletId)
+    	dataList[i].step--;
     }
     establishList(operateColumns);
 }
@@ -834,10 +842,25 @@ function insertRow(event) {
         //找到删除行id值对应的那一条数据
         if (dataList[i].step == deletId) {
             //对数据列表进行删除
-            dataList.splice(i, 0,dataList[i]);break;
+            //dataList.splice(i, 0,dataList[i]);
+            var dataAdd= { step: 1, name: '小王', time: 600, zone1: 823, zone2: 823, zone3: 823, zone4: 823, zone5: 823, zone6: 823, bigN2: 1000, smallN2: 100, O2: 1000, pressure: 0.1 };
+            dataList.splice(i, 0,dataAdd);
+            dataList[i].step=deletId;
+            break;
+        }
+    //document.write(dataList[0]);document.write(dataList[1]);document.write(dataList[2]);document.write(dataList[3]);document.write(dataList[4]);document.write(dataList[5]);
+    
+    for (let i=deletId;i<=dataList.Length;i++) {
+            dataList[i].step++;
         }
     }
-    //document.write(dataList[0]);document.write(dataList[1]);document.write(dataList[2]);document.write(dataList[3]);document.write(dataList[4]);document.write(dataList[5]);
+ 
+    var j=1;
+    for (let i=deletId;i<dataList.length;i++) {
+    	//if(i==deletId)
+    	dataList[i].step++;
+    }
+    
     establishList(operateColumns);
 }
 
